@@ -5,7 +5,7 @@
 CARD_WIDTH = 166
 CARD_HEIGHT = 242
 
-# Card gap between each other
+# Card gap between each other (0.75 means 3/4 of the card width so there is a 1/4 of the card width gap)
 CARD_GAP_SCALE = 0.75
 
 # Gap between cards and the screen border

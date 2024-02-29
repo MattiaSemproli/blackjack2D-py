@@ -112,15 +112,17 @@ class BlackjackGame:
 
     def render(self):
         self.screen.fill(BG_COLOR)
+        p_hand_len = len(self.player_hand.cards)
+        d_hand_len = len(self.dealer_hand.cards)
         for i, card in enumerate(self.player_hand.cards):
-            self.draw_card(card, int(self.screen.get_width() / 2 - CARD_WIDTH / 2) + i * CARD_WIDTH * CARD_GAP_SCALE, 
+            self.draw_card(card, int((self.screen.get_width() - (CARD_WIDTH + (p_hand_len - 1) * (CARD_WIDTH * CARD_GAP_SCALE))) / 2) + i * CARD_WIDTH * CARD_GAP_SCALE, 
                                  int(self.screen.get_height() - CARD_HEIGHT - self.screen.get_height() * HEIGHT_GAP_SCALE))
         for i, card in enumerate(self.dealer_hand.cards):
             if i == 0 and (self.status == PLAYER_TURN_STATUS or (self.status == QUIT_STATUS and self.prev_status == PLAYER_TURN_STATUS)):
-                self.draw_card(None, int(self.screen.get_width() / 2 - CARD_WIDTH / 2) + i * CARD_WIDTH * CARD_GAP_SCALE, 
+                self.draw_card(None, int((self.screen.get_width() - (CARD_WIDTH + (d_hand_len - 1) * (CARD_WIDTH * CARD_GAP_SCALE))) / 2) + i * CARD_WIDTH * CARD_GAP_SCALE, 
                                      int(self.screen.get_height() * HEIGHT_GAP_SCALE))
             else:
-                self.draw_card(card, int(self.screen.get_width() / 2 - CARD_WIDTH / 2) + i * CARD_WIDTH * CARD_GAP_SCALE, 
+                self.draw_card(card, int((self.screen.get_width() - (CARD_WIDTH + (d_hand_len - 1) * (CARD_WIDTH * CARD_GAP_SCALE))) / 2) + i * CARD_WIDTH * CARD_GAP_SCALE, 
                                      int(self.screen.get_height() * HEIGHT_GAP_SCALE))
 
         if self.status in END_GAME_STATUSES:
